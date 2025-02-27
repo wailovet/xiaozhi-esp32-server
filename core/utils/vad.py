@@ -71,6 +71,8 @@ def create_instance(class_name, *args, **kwargs) -> VAD:
         "SileroVAD": SileroVAD,
         # 可扩展其他SileroVAD实现
     }
+    if class_name not in cls_map:  # 如果类名不在字典中，则返回None
+        return None
 
     if cls := cls_map.get(class_name):
         return cls(*args, **kwargs)
