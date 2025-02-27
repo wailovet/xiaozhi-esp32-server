@@ -24,6 +24,7 @@ async def main():
         port = server_config["port"]
         try:
             webui = WebUI()
+            webui.disable_register = server_config.get("disable_register", False)
             runner = web.AppRunner(webui.app)
             await runner.setup()
             site = web.TCPSite(runner, host, port)

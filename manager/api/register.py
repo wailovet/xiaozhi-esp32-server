@@ -6,11 +6,19 @@ TAG = __name__
 logger = setup_logging()
 
 class RegisterHandler:
-    def __init__(self, user_manager):
+    def __init__(self, user_manager, disable_register):
         self.user_manager = user_manager
+        self.disable_register = disable_register
 
     async def handle_register(self, request):
         """处理注册请求"""
+
+        if self.disable_register:
+            return web.json_response({
+                'success': False,
+                'message': '注册功能已禁用'
+            })
+
         try:
             data = await request.json()
             username = data.get('username')

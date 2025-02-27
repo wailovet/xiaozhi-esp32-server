@@ -32,6 +32,7 @@ def auth_required(handler):
     return wrapper
 
 class WebUI:
+    disable_register = False
     def __init__(self):
         self.app = web.Application()
         self.user_manager = UserManager()
@@ -60,7 +61,7 @@ class WebUI:
     def setup_routes(self):
         """设置路由"""
         login_handler = LoginHandler(self.user_manager, self.session_manager)
-        register_handler = RegisterHandler(self.user_manager)
+        register_handler = RegisterHandler(self.user_manager, self.disable_register)
         config_handler = ConfigHandler(self.session_manager)
         
         # Public APIs

@@ -41,6 +41,7 @@ manager:
   enabled: false
   ip: 0.0.0.0
   port: 8002
+  disable_register: true
 iot:
   Speaker:
     volume: 100
