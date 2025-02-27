@@ -21,7 +21,8 @@ class WebSocketServer:
         return (
             vad.create_instance(
                 self.config["selected_module"]["VAD"],
-                self.config["VAD"][self.config["selected_module"]["VAD"]]
+                # self.config["VAD"][self.config["selected_module"]["VAD"]]
+                self.config["VAD"].get(self.config["selected_module"]["VAD"], None), 
             ),
             asr.create_instance(
                 self.config["selected_module"]["ASR"]
