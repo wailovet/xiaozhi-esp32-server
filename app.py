@@ -25,6 +25,7 @@ async def main():
         try:
             webui = WebUI()
             webui.disable_register = server_config.get("disable_register", False)
+            logger.bind(tag=TAG).info(f"Register is {webui.disable_register}")
             runner = web.AppRunner(webui.app)
             await runner.setup()
             site = web.TCPSite(runner, host, port)
