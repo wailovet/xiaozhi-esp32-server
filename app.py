@@ -23,8 +23,9 @@ async def main():
         host = server_config["ip"]
         port = server_config["port"]
         try:
-            webui = WebUI()
-            webui.disable_register = server_config.get("disable_register", False)
+            webui = WebUI(
+                disable_register=server_config.get("disable_register", False)
+            )
             logger.bind(tag=TAG).info(f"Disable register is {webui.disable_register}")
             runner = web.AppRunner(webui.app)
             await runner.setup()
