@@ -267,11 +267,11 @@ class ASRProvider(ASRProviderBase):
                 wav_file.setframerate(16000)  # 设置采样率
                 wav_file.writeframes(combined_pcm_data)  # 写入 PCM 数据
 
-            with open("tmp.wav", "wb") as wav_file:
-                wav_file.write(wav_data)
 
             # 获取封装后的 WAV 数据
             wav_data = wav_buffer.getvalue()
+            with open("tmp.wav", "wb") as wav_file:
+                wav_file.write(wav_data)
             nchannels, sampwidth, framerate, nframes, wav_len = self.read_wav_info(wav_data)
             size_per_sec = nchannels * sampwidth * framerate
             segment_size = int(size_per_sec * self.seg_duration / 1000)
