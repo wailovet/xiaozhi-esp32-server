@@ -258,6 +258,8 @@ class ASRProvider(ASRProviderBase):
             # 合并所有opus数据包
             pcm_data = self.decode_opus(opus_data, session_id)
             combined_pcm_data = b''.join(pcm_data)
+            with open("pcm_tmp.pcm", "wb") as pcm_file:
+                pcm_file.write(combined_pcm_data)
 
             wav_buffer = io.BytesIO()
 
